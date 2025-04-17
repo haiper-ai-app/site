@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Haiper - AI-powered video generation and motion design. Create intelligent animations and dynamic visuals with our next-gen creative automation tools." name="description"/>
+<meta content="AI video generation, motion design, intelligent animation, creative automation, generative media, dynamic visuals, cinematic AI, visual storytelling, neural motion, synthetic cinematography, dreamlike visuals, movement synthesis, AI creativity, kinetic art, next-gen video tools, haiper, haiper ai" name="keywords"/>
+<title>Haiper | AI-Powered Motion Design &amp; Video Generation</title>
+<link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;700&amp;family=Roboto:wght@300;400;700&amp;family=Rajdhani:wght@300;400;700&amp;display=swap" rel="stylesheet"/>
+<style>
+    :root {
+        --primary-dark: #191970;
+        --primary-navy: #000080;
+        --primary-indigo: #4B0082;
+        --primary-violet: #8A2BE2;
+        --accent-teal: #40E0D0;
+        --accent-cyan: #00FFFF;
+        --highlight-white: #F8F8FF;
+        --highlight-gold: #FFD700;
+        --bg-dark: #0B0B0B;
+        --bg-light: #1A1A1A;
+    }
+    body {
+        font-family: 'Roboto', sans-serif;
+        background: linear-gradient(to bottom right, var(--bg-dark), var(--bg-light));
+        color: var(--highlight-white);
+    }
+    h1, h2, h3, h4, h5, h6 {
+        font-family: 'Exo 2', sans-serif;
+    }
+    .btn, .nav-link {
+        font-family: 'Rajdhani', sans-serif;
+    }
+    .btn {
+        transition: all 0.3s ease;
+        border: none;
+        background: linear-gradient(45deg, var(--primary-indigo), var(--primary-violet));
+        color: var(--highlight-white);
+    }
+    .btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 15px var(--accent-cyan);
+    }
+    .parallax {
+        perspective: 1px;
+        height: 100vh;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+    .parallax__layer {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+    }
+    .parallax__layer--base {
+        transform: translateZ(0);
+    }
+    .parallax__layer--back {
+        transform: translateZ(-1px) scale(2);
+    }
+    @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+        100% { transform: scale(1); }
+    }
+    .pulse {
+        animation: pulse 2s infinite;
+    }
+    @media (prefers-reduced-motion: reduce) {
+        .parallax, .pulse {
+            animation: none;
+        }
+    }
+</style>
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        });
+
+        document.querySelectorAll('.fade-in').forEach((el) => observer.observe(el));
+    });
+</script>
+<div class="position-fixed bottom-0 start-50 translate-middle-x p-3 bg-dark text-light rounded-top" id="cookie-consent" style="z-index: 1050; display: none;">
+<div class="container">
+<div class="row align-items-center">
+<div class="col-md-8">
+<p class="mb-0">We use cookies to enhance your experience. By continuing to visit this site you agree to our use of cookies.</p>
+</div>
+<div class="col-md-4 text-md-end mt-2 mt-md-0">
+<button class="btn btn-outline-cyan me-2" id="accept-cookies">Accept</button>
+<button class="btn btn-outline-danger" id="decline-cookies">Decline</button>
+</div>
+</div>
+</div>
+</div>
+<style>
+    #cookie-consent {
+        background: linear-gradient(135deg, #191970, #4B0082);
+        border-top: 2px solid #40E0D0;
+        font-family: 'Roboto', sans-serif;
+    }
+    .btn-outline-cyan {
+        color: #40E0D0;
+        border-color: #40E0D0;
+    }
+    .btn-outline-cyan:hover {
+        color: #000;
+        background-color: #40E0D0;
+    }
+    .btn-outline-danger {
+        color: #FFD700;
+        border-color: #FFD700;
+    }
+    .btn-outline-danger:hover {
+        color: #000;
+        background-color: #FFD700;
+    }
+</style>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const cookieConsent = document.getElementById('cookie-consent');
+    const acceptBtn = document.getElementById('accept-cookies');
+    const declineBtn = document.getElementById('decline-cookies');
+
+    function setCookie(name, value, days) {
+        let expires = "";
+        if (days) {
+            const date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            expires = "; expires=" + date.toUTCString();
+        }
+        document.cookie = name + "=" + (value || "") + expires + "; path=/";
+    }
+
+    function getCookie(name) {
+        const nameEQ = name + "=";
+        const ca = document.cookie.split(';');
+        for(let i = 0; i < ca.length; i++) {
+            let c = ca[i];
+            while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+            if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+        }
+        return null;
+    }
+
+    function hideCookieConsent() {
+        cookieConsent.style.display = 'none !important';
+        cookieConsent.remove(); // Completely remove from DOM
+    }
+
+    if (!localStorage.getItem('cookieConsentShown')) {
+        cookieConsent.style.display = 'block';
+    }
+
+    acceptBtn.addEventListener('click', function() {
+        setCookie('cookieConsent', 'accepted', 365);
+        localStorage.setItem('cookieConsentShown', 'true');
+        hideCookieConsent();
+    });
+
+    declineBtn.addEventListener('click', function() {
+        setCookie('cookieConsent', 'declined', 365);
+        localStorage.setItem('cookieConsentShown', 'true');
+        hideCookieConsent();
+    });
+});
+</script>
+</head>
+<body style="display: flex; flex-direction: column; min-height: 100vh;">
+<div style="flex: 1;">
+<header>
+<header class="navbar navbar-expand-lg navbar-dark" style="background: linear-gradient(135deg, #191970, #4B0082);">
+<div class="container">
+<a class="navbar-brand" href="/" style="font-family: 'Exo 2', sans-serif; font-size: 2rem; color: #F8F8FF; text-shadow: 0 0 10px #00FFFF;">
+      Haiper
+    </a>
+<button aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbarNav" data-bs-toggle="collapse" type="button">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+<ul class="navbar-nav">
+<li class="nav-item">
+<a class="nav-link" href="posts.html" style="font-family: 'Rajdhani', sans-serif; color: #40E0D0; transition: all 0.3s ease;">Posts</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="about.html" style="font-family: 'Rajdhani', sans-serif; color: #40E0D0; transition: all 0.3s ease;">About</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="contacts.html" style="font-family: 'Rajdhani', sans-serif; color: #40E0D0; transition: all 0.3s ease;">Contacts</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="privacy_policy.html" style="font-family: 'Rajdhani', sans-serif; color: #40E0D0; transition: all 0.3s ease;">Privacy Policy</a>
+</li>
+</ul>
+</div>
+</div>
+</header>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@700&family=Rajdhani:wght@500&display=swap');
+
+  .navbar-nav .nav-link {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .navbar-nav .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #00FFFF;
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+  }
+
+  .navbar-nav .nav-link:hover::after {
+    transform: scaleX(1);
+  }
+
+  .navbar-nav .nav-link:hover {
+    color: #F8F8FF !important;
+    text-shadow: 0 0 5px #00FFFF;
+  }
+
+  @media (max-width: 991.98px) {
+    .navbar-collapse {
+      background-color: rgba(25, 25, 112, 0.9);
+      padding: 1rem;
+      border-radius: 0.5rem;
+    }
+  }
+</style>
+<script>
+  document.addEventListener('DOMContentLoaded', (event) => {
+    const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+    const navbarToggler = document.querySelector('.navbar-toggler');
+    const navbarCollapse = document.querySelector('.navbar-collapse');
+    
+    navLinks.forEach(link => {
+      link.addEventListener('mouseover', () => {
+        link.style.transform = 'scale(1.1)';
+      });
+      
+      link.addEventListener('mouseout', () => {
+        link.style.transform = 'scale(1)';
+      });
+    });
+
+    navbarToggler.addEventListener('click', () => {
+      navbarCollapse.classList.toggle('show');
+    });
+  });
+</script>
+</header>
+<div class="container-fluid py-5" style="background: linear-gradient(135deg, #0B0B0B, #1A1A1A);">
+<div class="row justify-content-center">
+<div class="col-lg-8 col-md-10">
+<article class="text-light">
+<h1 class="display-4 mb-4" style="font-family: 'Exo 2', sans-serif; color: #F8F8FF;">The Art of AI-Generated Motion</h1>
+<p class="lead mb-4" style="font-family: 'Roboto', sans-serif; color: #40E0D0;">
+                    In the realm of digital creativity, a revolution is unfolding. Artificial intelligence is not just assisting animators and motion designers; it's redefining the very essence of movement in the digital space.
+                </p>
+<img alt="A mesmerizing AI-generated animation showcasing fluid, organic movements of abstract shapes morphing and flowing seamlessly, with a color palette of deep blues and purples" class="img-fluid rounded mb-4" src="images/image_0_posts_1.png"/>
+<p style="font-family: 'Inter', sans-serif;">
+                    The fusion of AI and motion design has given birth to a new era of visual storytelling. Gone are the days when animators had to painstakingly create each frame by hand. Now, with the power of neural networks and machine learning algorithms, we're witnessing the birth of intelligent animation that can create fluid and organic movements that were once thought impossible to achieve manually.
+                </p>
+<h2 class="h3 mt-5 mb-3" style="font-family: 'Exo 2', sans-serif; color: #00FFFF;">Unleashing Creativity Through Code</h2>
+<p style="font-family: 'Inter', sans-serif;">
+                    Haiper's AI-driven tools are at the forefront of this revolution, enabling creators to push the boundaries of what's possible in motion design. By leveraging vast datasets of movement and physics, our AI can generate animations that not only look natural but also possess a dreamlike quality that captivates viewers.
+                </p>
+<img alt="A split-screen comparison showing traditional hand-drawn animation on one side and AI-generated animation on the other, highlighting the smooth and complex movements achieved by AI" class="img-fluid rounded mb-4" src="images/image_1_posts_1.png"/>
+<p style="font-family: 'Inter', sans-serif;">
+                    The implications of this technology extend far beyond simple animations. We're seeing the emergence of fully synthetic cinematography, where entire scenes can be choreographed and rendered by AI, creating visual experiences that blur the line between reality and digital artistry.
+                </p>
+<h2 class="h3 mt-5 mb-3" style="font-family: 'Exo 2', sans-serif; color: #00FFFF;">The Future of Dynamic Visuals</h2>
+<p style="font-family: 'Inter', sans-serif;">
+                    As we continue to refine our AI algorithms, the potential for creative automation in the field of motion design is boundless. Imagine a world where your ideas can be immediatelyly translated into fluid, cinematic sequences with just a few expertmpts. This is the potentialmise of AI-generated motion, and it's a future we at Haiper are actively building.
+                </p>
+<p style="font-family: 'Inter', sans-serif;">
+                    The art of AI-generated motion is not just about efficiency; it's about expanding the horizons of human creativity. By liberatinging artists from technical constraints, we're opening up new avenues for expression and storytelling that were previously unimaginable.
+                </p>
+<img alt="A futuristic interface showing an artist using gesture controls to manipulate AI-generated animations in real-time, surrounded by holographic displays of motion data" class="img-fluid rounded mb-4" src="images/image_2_posts_1.png"/>
+<p style="font-family: 'Inter', sans-serif;">
+                    As we stand on the brink of this new era in visual arts, one thing is clear: the synergy between human creativity and artificial intelligence is creating a new language of motion, one that speaks to the infinite possibilities of the digital age. Welcome to the future of movement, where every frame is a masterpiece of human imagination and computational brilliance.
+                </p>
+</article>
+</div>
+</div>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', (event) => {
+    const article = document.querySelector('article');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = 1;
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, {
+        threshold: 0.1
+    });
+
+    article.querySelectorAll('p, h2, img').forEach(el => {
+        el.style.opacity = 0;
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        observer.observe(el);
+    });
+});
+</script>
+</div>
+<footer style="width: 100%; z-index: 1000;">
+<footer class="bg-gradient-dark text-light py-4">
+<div class="container">
+<div class="row">
+<div class="col-md-4 mb-3 mb-md-0">
+<h5 class="text-cyan mb-3">Haiper</h5>
+<p class="text-muted">Pioneering the future of AI-driven motion design and visual storytelling.</p>
+</div>
+<div class="col-md-4 mb-3 mb-md-0">
+<h5 class="text-cyan mb-3">Quick Links</h5>
+<ul class="list-unstyled">
+<li><a class="text-light text-decoration-none hover-glow" href="posts.html">Latest Posts</a></li>
+<li><a class="text-light text-decoration-none hover-glow" href="about.html">About Us</a></li>
+<li><a class="text-light text-decoration-none hover-glow" href="contacts.html">Contact</a></li>
+<li><a class="text-light text-decoration-none hover-glow" href="privacy_policy.html">Privacy Policy</a></li>
+</ul>
+</div>
+<div class="col-md-4">
+<h5 class="text-cyan mb-3">Connect With Us</h5>
+<div class="d-flex justify-content-start">
+<a class="text-light me-3 hover-glow" href="#"><i class="fab fa-twitter"></i></a>
+<a class="text-light me-3 hover-glow" href="#"><i class="fab fa-facebook"></i></a>
+<a class="text-light me-3 hover-glow" href="#"><i class="fab fa-instagram"></i></a>
+<a class="text-light hover-glow" href="#"><i class="fab fa-linkedin"></i></a>
+</div>
+</div>
+</div>
+<hr class="my-4 bg-cyan"/>
+<div class="row">
+<div class="col-md-6 text-center text-md-start">
+<p class="mb-0">© 2024 Haiper AI. All rights reserved.</p>
+</div>
+<div class="col-md-6 text-center text-md-end">
+<p class="mb-0">1234 Cosmic Lane, Silicon Valley, CA 94024 | +1 (555) 123-4567</p>
+</div>
+</div>
+</div>
+</footer>
+<style>
+    .bg-gradient-dark {
+        background: linear-gradient(135deg, #0B0B0B, #1A1A1A);
+    }
+    .text-cyan {
+        color: #40E0D0;
+    }
+    .hover-glow:hover {
+        text-shadow: 0 0 10px rgba(64, 224, 208, 0.5);
+        transition: text-shadow 0.3s ease;
+    }
+</style>
+</footer>
+</body>
+</html>

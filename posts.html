@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Haiper - AI-powered video generation and motion design. Create intelligent animations and dynamic visuals with our next-gen creative automation tools." name="description"/>
+<meta content="AI video generation, motion design, intelligent animation, creative automation, generative media, dynamic visuals, cinematic AI, visual storytelling, neural motion, synthetic cinematography, dreamlike visuals, movement synthesis, AI creativity, kinetic art, next-gen video tools, haiper, haiper ai" name="keywords"/>
+<title>Haiper | AI-Powered Motion Design &amp; Video Generation</title>
+<link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;700&amp;family=Roboto:wght@300;400;700&amp;family=Rajdhani:wght@300;400;700&amp;display=swap" rel="stylesheet"/>
+<style>
+    :root {
+        --primary-dark: #191970;
+        --primary-navy: #000080;
+        --primary-indigo: #4B0082;
+        --primary-violet: #8A2BE2;
+        --accent-teal: #40E0D0;
+        --accent-cyan: #00FFFF;
+        --highlight-white: #F8F8FF;
+        --highlight-gold: #FFD700;
+        --bg-dark: #0B0B0B;
+        --bg-light: #1A1A1A;
+    }
+    body {
+        font-family: 'Roboto', sans-serif;
+        background: linear-gradient(to bottom right, var(--bg-dark), var(--bg-light));
+        color: var(--highlight-white);
+    }
+    h1, h2, h3, h4, h5, h6 {
+        font-family: 'Exo 2', sans-serif;
+    }
+    .btn, .nav-link {
+        font-family: 'Rajdhani', sans-serif;
+    }
+    .btn {
+        transition: all 0.3s ease;
+        border: none;
+        background: linear-gradient(45deg, var(--primary-indigo), var(--primary-violet));
+        color: var(--highlight-white);
+    }
+    .btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 15px var(--accent-cyan);
+    }
+    .parallax {
+        perspective: 1px;
+        height: 100vh;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+    .parallax__layer {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+    }
+    .parallax__layer--base {
+        transform: translateZ(0);
+    }
+    .parallax__layer--back {
+        transform: translateZ(-1px) scale(2);
+    }
+    @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+        100% { transform: scale(1); }
+    }
+    .pulse {
+        animation: pulse 2s infinite;
+    }
+    @media (prefers-reduced-motion: reduce) {
+        .parallax, .pulse {
+            animation: none;
+        }
+    }
+</style>
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        });
+
+        document.querySelectorAll('.fade-in').forEach((el) => observer.observe(el));
+    });
+</script>
+<div class="position-fixed bottom-0 start-50 translate-middle-x p-3 bg-dark text-light rounded-top" id="cookie-consent" style="z-index: 1050; display: none;">
+<div class="container">
+<div class="row align-items-center">
+<div class="col-md-8">
+<p class="mb-0">We use cookies to enhance your experience. By continuing to visit this site you agree to our use of cookies.</p>
+</div>
+<div class="col-md-4 text-md-end mt-2 mt-md-0">
+<button class="btn btn-outline-cyan me-2" id="accept-cookies">Accept</button>
+<button class="btn btn-outline-danger" id="decline-cookies">Decline</button>
+</div>
+</div>
+</div>
+</div>
+<style>
+    #cookie-consent {
+        background: linear-gradient(135deg, #191970, #4B0082);
+        border-top: 2px solid #40E0D0;
+        font-family: 'Roboto', sans-serif;
+    }
+    .btn-outline-cyan {
+        color: #40E0D0;
+        border-color: #40E0D0;
+    }
+    .btn-outline-cyan:hover {
+        color: #000;
+        background-color: #40E0D0;
+    }
+    .btn-outline-danger {
+        color: #FFD700;
+        border-color: #FFD700;
+    }
+    .btn-outline-danger:hover {
+        color: #000;
+        background-color: #FFD700;
+    }
+</style>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const cookieConsent = document.getElementById('cookie-consent');
+    const acceptBtn = document.getElementById('accept-cookies');
+    const declineBtn = document.getElementById('decline-cookies');
+
+    function setCookie(name, value, days) {
+        let expires = "";
+        if (days) {
+            const date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            expires = "; expires=" + date.toUTCString();
+        }
+        document.cookie = name + "=" + (value || "") + expires + "; path=/";
+    }
+
+    function getCookie(name) {
+        const nameEQ = name + "=";
+        const ca = document.cookie.split(';');
+        for(let i = 0; i < ca.length; i++) {
+            let c = ca[i];
+            while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+            if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+        }
+        return null;
+    }
+
+    function hideCookieConsent() {
+        cookieConsent.style.display = 'none !important';
+        cookieConsent.remove(); // Completely remove from DOM
+    }
+
+    if (!localStorage.getItem('cookieConsentShown')) {
+        cookieConsent.style.display = 'block';
+    }
+
+    acceptBtn.addEventListener('click', function() {
+        setCookie('cookieConsent', 'accepted', 365);
+        localStorage.setItem('cookieConsentShown', 'true');
+        hideCookieConsent();
+    });
+
+    declineBtn.addEventListener('click', function() {
+        setCookie('cookieConsent', 'declined', 365);
+        localStorage.setItem('cookieConsentShown', 'true');
+        hideCookieConsent();
+    });
+});
+</script>
+</head>
+<body style="display: flex; flex-direction: column; min-height: 100vh;">
+<div style="flex: 1;">
+<header>
+<header class="navbar navbar-expand-lg navbar-dark" style="background: linear-gradient(135deg, #191970, #4B0082);">
+<div class="container">
+<a class="navbar-brand" href="/" style="font-family: 'Exo 2', sans-serif; font-size: 2rem; color: #F8F8FF; text-shadow: 0 0 10px #00FFFF;">
+      Haiper
+    </a>
+<button aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbarNav" data-bs-toggle="collapse" type="button">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+<ul class="navbar-nav">
+<li class="nav-item">
+<a class="nav-link" href="posts.html" style="font-family: 'Rajdhani', sans-serif; color: #40E0D0; transition: all 0.3s ease;">Posts</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="about.html" style="font-family: 'Rajdhani', sans-serif; color: #40E0D0; transition: all 0.3s ease;">About</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="contacts.html" style="font-family: 'Rajdhani', sans-serif; color: #40E0D0; transition: all 0.3s ease;">Contacts</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="privacy_policy.html" style="font-family: 'Rajdhani', sans-serif; color: #40E0D0; transition: all 0.3s ease;">Privacy Policy</a>
+</li>
+</ul>
+</div>
+</div>
+</header>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@700&family=Rajdhani:wght@500&display=swap');
+
+  .navbar-nav .nav-link {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .navbar-nav .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #00FFFF;
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+  }
+
+  .navbar-nav .nav-link:hover::after {
+    transform: scaleX(1);
+  }
+
+  .navbar-nav .nav-link:hover {
+    color: #F8F8FF !important;
+    text-shadow: 0 0 5px #00FFFF;
+  }
+
+  @media (max-width: 991.98px) {
+    .navbar-collapse {
+      background-color: rgba(25, 25, 112, 0.9);
+      padding: 1rem;
+      border-radius: 0.5rem;
+    }
+  }
+</style>
+<script>
+  document.addEventListener('DOMContentLoaded', (event) => {
+    const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+    const navbarToggler = document.querySelector('.navbar-toggler');
+    const navbarCollapse = document.querySelector('.navbar-collapse');
+    
+    navLinks.forEach(link => {
+      link.addEventListener('mouseover', () => {
+        link.style.transform = 'scale(1.1)';
+      });
+      
+      link.addEventListener('mouseout', () => {
+        link.style.transform = 'scale(1)';
+      });
+    });
+
+    navbarToggler.addEventListener('click', () => {
+      navbarCollapse.classList.toggle('show');
+    });
+  });
+</script>
+</header>
+<div style="margin-bottom: 50px;">
+<div class="container-fluid py-5" style="background: linear-gradient(135deg, #191970, #4B0082);">
+<div class="row justify-content-center">
+<div class="col-md-8 text-center">
+<h1 class="display-3 text-white mb-4" style="font-family: 'Exo 2', sans-serif; text-shadow: 0 0 10px #00FFFF;">
+                Explore Our AI-Generated Visual Stories
+            </h1>
+<p class="lead text-light" style="font-family: 'Roboto', sans-serif;">
+                Dive into a world where intelligent animation meets creative automation. Our blog posts showcase the cutting-edge of synthetic cinematography and neural motion.
+            </p>
+<div class="mt-5">
+<div class="d-inline-block position-relative">
+<div class="position-absolute" style="top: -10px; left: -10px; right: -10px; bottom: -10px; background: linear-gradient(45deg, #40E0D0, #00FFFF); filter: blur(15px); opacity: 0.5; z-index: -1;"></div>
+<button class="btn btn-outline-light btn-lg px-5 py-3" style="font-family: 'Orbitron', sans-serif; border-width: 2px;">
+                        Generate Your Story
+                    </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', (event) => {
+    const heading = document.querySelector('.display-3');
+    const paragraph = document.querySelector('.lead');
+    const button = document.querySelector('.btn');
+
+    // Animate heading
+    heading.style.opacity = '0';
+    heading.style.transform = 'translateY(-50px)';
+    heading.style.transition = 'opacity 1s ease-out, transform 1s ease-out';
+
+    // Animate paragraph
+    paragraph.style.opacity = '0';
+    paragraph.style.transform = 'translateY(50px)';
+    paragraph.style.transition = 'opacity 1s ease-out 0.5s, transform 1s ease-out 0.5s';
+
+    // Animate button
+    button.style.opacity = '0';
+    button.style.transition = 'opacity 1s ease-out 1s, box-shadow 0.3s ease-in-out';
+
+    setTimeout(() => {
+        heading.style.opacity = '1';
+        heading.style.transform = 'translateY(0)';
+        paragraph.style.opacity = '1';
+        paragraph.style.transform = 'translateY(0)';
+        button.style.opacity = '1';
+    }, 100);
+
+    // Button hover effect
+    button.addEventListener('mouseover', () => {
+        button.style.boxShadow = '0 0 20px #00FFFF';
+    });
+    button.addEventListener('mouseout', () => {
+        button.style.boxShadow = 'none';
+    });
+});
+</script>
+</div>
+<div class="container mt-5">
+<div class="row">
+<div class="col-lg-8 offset-lg-2">
+<div class="card-columns">
+<div class="card bg-dark text-light mb-4 shadow-lg">
+<img alt="Abstract visualization of AI-generated fluid motion patterns, with swirling lines and particles forming organic shapes against a deep blue background" class="card-img-top" src="images/image_0_posts.png"/>
+<div class="card-body">
+<h3 class="card-title" style="font-family: 'Exo 2', sans-serif;">The Art of AI-Generated Motion</h3>
+<p class="card-text" style="font-family: 'Roboto', sans-serif;">Explore how artificial intelligence is revolutionizing animation and motion design, creating fluid and organic movements that were once impossible to achieve manually.</p>
+<a class="btn btn-outline-cyan btn-sm mt-2" href="posts_1.html" style="font-family: 'Rajdhani', sans-serif;">Read More</a>
+</div>
+</div>
+<div class="card bg-dark text-light mb-4 shadow-lg">
+<img alt="Minimalist web design showcasing subtle gradients, volumetric lighting, and strategic negative space against a navy background" class="card-img-top" src="images/image_1_posts.png"/>
+<div class="card-body">
+<h3 class="card-title" style="font-family: 'Exo 2', sans-serif;">Cinematic Minimalism in Web Design</h3>
+<p class="card-text" style="font-family: 'Roboto', sans-serif;">Discover the power of less in web aesthetics. This post delves into how subtle gradients, volumetric lighting, and strategic negative space can create immersive digital experiences.</p>
+<a class="btn btn-outline-cyan btn-sm mt-2" href="posts_2.html" style="font-family: 'Rajdhani', sans-serif;">Read More</a>
+</div>
+</div>
+<div class="card bg-dark text-light mb-4 shadow-lg">
+<img alt="Visual representation of smooth website transitions, showing flowing elements and intuitive navigation paths on an indigo backdrop" class="card-img-top" src="images/image_2_posts.png"/>
+<div class="card-body">
+<h3 class="card-title" style="font-family: 'Exo 2', sans-serif;">The Psychology of Smooth Transitions</h3>
+<p class="card-text" style="font-family: 'Roboto', sans-serif;">Uncover the cognitive impact of fluid website transitions. Learn how seamless navigation enhances user engagement and creates a more intuitive browsing experience.</p>
+<a class="btn btn-outline-cyan btn-sm mt-2" href="posts_3.html" style="font-family: 'Rajdhani', sans-serif;">Read More</a>
+</div>
+</div>
+<div class="card bg-dark text-light mb-4 shadow-lg">
+<img alt="Illustration of responsive design elements moving like dancers across different device screens, set against a vibrant violet background" class="card-img-top" src="images/image_3_posts.png"/>
+<div class="card-body">
+<h3 class="card-title" style="font-family: 'Exo 2', sans-serif;">Responsive Design as Choreography</h3>
+<p class="card-text" style="font-family: 'Roboto', sans-serif;">Explore the dance-like quality of contemporaryern UI/UX design. This post examines how thoughtful motion design can guide users through digital spaces with grace and purpose.</p>
+<a class="btn btn-outline-cyan btn-sm mt-2" href="posts_4.html" style="font-family: 'Rajdhani', sans-serif;">Read More</a>
+</div>
+</div>
+<div class="card bg-dark text-light mb-4 shadow-lg">
+<img alt="Futuristic web interface blending digital and physical realities, featuring holographic elements and interactive 3D objects on a teal and deep blue gradient" class="card-img-top" src="images/image_4_posts.png"/>
+<div class="card-body">
+<h3 class="card-title" style="font-family: 'Exo 2', sans-serif;">The Future of Immersive Web Experiences</h3>
+<p class="card-text" style="font-family: 'Roboto', sans-serif;">Peek into the crystal ball of web design. Discuss emerging trends in creating deeply engaging, cinematic online environments that blur the line between digital and physical realities.</p>
+<a class="btn btn-outline-cyan btn-sm mt-2" href="posts_5.html" style="font-family: 'Rajdhani', sans-serif;">Read More</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<style>
+    body {
+        background: linear-gradient(135deg, #0B0B0B, #1A1A1A);
+        color: #F8F8FF;
+        font-family: 'Roboto', sans-serif;
+    }
+    .card {
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    }
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+    .btn-outline-cyan {
+        color: #00FFFF;
+        border-color: #00FFFF;
+        transition: all 0.3s ease;
+    }
+    .btn-outline-cyan:hover {
+        color: #191970;
+        background-color: #00FFFF;
+    }
+</style>
+<script>
+document.addEventListener('DOMContentLoaded', (event) => {
+    const cards = document.querySelectorAll('.card');
+    
+    cards.forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            card.style.transform = 'scale(1.05)';
+            card.style.boxShadow = '0 15px 30px rgba(0,0,0,0.3)';
+        });
+        
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'scale(1)';
+            card.style.boxShadow = '0 5px 15px rgba(0,0,0,0.1)';
+        });
+    });
+});
+</script>
+</div>
+<footer style="width: 100%; z-index: 1000;">
+<footer class="bg-gradient-dark text-light py-4">
+<div class="container">
+<div class="row">
+<div class="col-md-4 mb-3 mb-md-0">
+<h5 class="text-cyan mb-3">Haiper</h5>
+<p class="text-muted">Pioneering the future of AI-driven motion design and visual storytelling.</p>
+</div>
+<div class="col-md-4 mb-3 mb-md-0">
+<h5 class="text-cyan mb-3">Quick Links</h5>
+<ul class="list-unstyled">
+<li><a class="text-light text-decoration-none hover-glow" href="posts.html">Latest Posts</a></li>
+<li><a class="text-light text-decoration-none hover-glow" href="about.html">About Us</a></li>
+<li><a class="text-light text-decoration-none hover-glow" href="contacts.html">Contact</a></li>
+<li><a class="text-light text-decoration-none hover-glow" href="privacy_policy.html">Privacy Policy</a></li>
+</ul>
+</div>
+<div class="col-md-4">
+<h5 class="text-cyan mb-3">Connect With Us</h5>
+<div class="d-flex justify-content-start">
+<a class="text-light me-3 hover-glow" href="#"><i class="fab fa-twitter"></i></a>
+<a class="text-light me-3 hover-glow" href="#"><i class="fab fa-facebook"></i></a>
+<a class="text-light me-3 hover-glow" href="#"><i class="fab fa-instagram"></i></a>
+<a class="text-light hover-glow" href="#"><i class="fab fa-linkedin"></i></a>
+</div>
+</div>
+</div>
+<hr class="my-4 bg-cyan"/>
+<div class="row">
+<div class="col-md-6 text-center text-md-start">
+<p class="mb-0">© 2024 Haiper AI. All rights reserved.</p>
+</div>
+<div class="col-md-6 text-center text-md-end">
+<p class="mb-0">1234 Cosmic Lane, Silicon Valley, CA 94024 | +1 (555) 123-4567</p>
+</div>
+</div>
+</div>
+</footer>
+<style>
+    .bg-gradient-dark {
+        background: linear-gradient(135deg, #0B0B0B, #1A1A1A);
+    }
+    .text-cyan {
+        color: #40E0D0;
+    }
+    .hover-glow:hover {
+        text-shadow: 0 0 10px rgba(64, 224, 208, 0.5);
+        transition: text-shadow 0.3s ease;
+    }
+</style>
+</footer>
+</body>
+</html>
